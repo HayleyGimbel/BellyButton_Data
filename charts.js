@@ -119,7 +119,9 @@ function buildCharts(sample) {
     Plotly.newPlot("bubble", bubbleData, bubbleLayout);
 
     // 4. Create the trace for the gauge chart.
-    var wfreq = parseFloat(data.wfreq)
+    var metadataArray = data.metadata.filter(sampleObj => sampleObj.id == sample);
+    var metadata = metadataArray[0];
+    var wfreq= parseFloat(metadata.wfreq)
    
     var gaugeData = [
       {
