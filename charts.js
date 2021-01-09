@@ -66,7 +66,6 @@ function buildCharts(sample) {
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otu_ids = result.otu_ids
     var otu_labels = result.otu_labels
-    console.log(otu_labels)
     var sample_values = result.sample_values
     // 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order  
@@ -120,15 +119,15 @@ function buildCharts(sample) {
     Plotly.newPlot("bubble", bubbleData, bubbleLayout);
 
     // 4. Create the trace for the gauge chart.
-    var wfreq = result.wfreq
+    var wfreq = parseFloat(data.wfreq)
    
     var gaugeData = [
       {
-        domain: { x: wfreq },
+        domain: { x: [0, 1], y: [0, 1] },
         value: wfreq,
         type: 'indicator',
-        mode: "gauge+indicator",
-        title: "Belly Button Washing Frequency", 
+        mode: "gauge+number",
+        title: { text: "Belly Button Washing Frequency" }, 
         gauge: {
           axis: { range: [null, 10]},
           bar: { color: "darkblue" },
@@ -141,7 +140,7 @@ function buildCharts(sample) {
           ]   
         }        
       }  
-    ]
+];
     // 5. Create the layout for the gauge chart.
     var gaugeLayout = { 
      
